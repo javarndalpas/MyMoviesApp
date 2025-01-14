@@ -29,7 +29,23 @@ const MovieSchema = new mongoose.Schema(
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
-        }
+        },
+        ratings: [
+            {
+                user: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "User",
+                    required: true
+                },
+                score: {
+                    type: Number,
+                    required: true,
+                    min: 0,
+                    max: 10
+                },
+            },
+        ],
+
     }
     ,
     {

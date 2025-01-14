@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 
 const Signup = async (req, res) => {
     try {
-        // console.log(req.body,"enter")
         const { username, email, password } = req.body;
         console.log(username, email, password);
         const user = await User.findOne({ email });
@@ -53,7 +52,7 @@ const Login = async (req, res) => {
             success: true,
             jwtToken,
             email,
-            usernmae: user.username
+            username: user.username
         })
     } catch (err) {
         console.log("Error:", err)
