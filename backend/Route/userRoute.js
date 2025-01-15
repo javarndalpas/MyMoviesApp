@@ -6,5 +6,6 @@ const route = express.Router();
 
 route.post("/signup", signupValidation, UserController.Signup); 
 route.post("/login", loginValidation, UserController.Login);
+route.post("/users/:id/watchlist",UserController.addToWatchlist)
 
 export default route;

@@ -10,6 +10,7 @@ function App() {
   return (
     <>
     <AllRoutes/>
+    <p className='text-4xl font-bold underline'>Movieflix</p>
     </>
   )
 }

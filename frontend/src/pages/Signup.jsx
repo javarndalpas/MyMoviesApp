@@ -5,7 +5,7 @@ import { handleError, handleSuccess } from "../utils";
 
 export const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -18,8 +18,9 @@ export const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    const { name, email, password } = signupInfo;
-    if (!name || !email || !password) {
+    console.log(signupInfo);
+    const { username, email, password } = signupInfo;
+    if (!username || !email || !password) {
       return handleError("Name, email, and password are required");
     }
     try {
@@ -36,13 +37,13 @@ export const Signup = () => {
       const { success, message, error } = result;
       if (success) {
         setSignupInfo({
-          name: "",
+          username: "",
           email: "",
           password: "",
         });
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/login");
+          navigate("/signin");
         }, 1000);
       } else if (error) {
         handleError(error?.details[0]?.message || "An error occurred");
@@ -65,10 +66,10 @@ export const Signup = () => {
             </label>
             <input
               type="text"
-              name="name"
-              id="name"
+              name="username"
+              id="username"
               onChange={handleChange}
-              value={signupInfo.name}
+              value={signupInfo.username}
               placeholder="Enter your name"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             />
@@ -113,7 +114,7 @@ export const Signup = () => {
         <div className="mt-4 text-center">
           <span className="text-sm text-gray-600">
             Already have an account?{" "}
-            <Link to="/login" className="text-indigo-600 hover:underline">
+            <Link to="/signin" className="text-indigo-600 hover:underline">
               Login
             </Link>
           </span>

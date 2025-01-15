@@ -18,10 +18,10 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        wishlist: [
+        watchlist: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'movie'
+                ref: 'movies'
             }
         ]
     }
