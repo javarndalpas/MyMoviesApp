@@ -53,7 +53,8 @@ export const Signin = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h1 className="text-2xl font-semibold text-center mb-6">Login</h1>
+        {/* <p className='text-4xl mb-8 font-bold underline'>Movieflix</p> */}
+        <h1 className="text-2xl font-semibold text-center mb-6">Signin</h1>
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">

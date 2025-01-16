@@ -68,7 +68,7 @@ const Login = async (req, res) => {
 
 const addToWatchlist = async (req, res) => {
     try {
-        const { id } = req.params; 
+        const { id } = req.params;
         const { movieId } = req.body;
 
         if (!movieId) {
@@ -77,7 +77,7 @@ const addToWatchlist = async (req, res) => {
                 success: false,
             });
         }
-        const movieExists = await Movie .findById(movieId);
+        const movieExists = await Movie.findById(movieId);
         if (!movieExists) {
             return res.status(404).json({
                 message: "Movie not found.",
@@ -86,9 +86,9 @@ const addToWatchlist = async (req, res) => {
         }
         const user = await User.findByIdAndUpdate(
             id,
-            { $addToSet: { watchlist: movieId } }, 
-            { new: true } 
-        ).populate('watchlist'); 
+            { $addToSet: { watchlist: movieId } },
+            { new: true }
+        ).populate('watchlist');
 
         if (!user) {
             return res.status(404).json({
@@ -112,11 +112,33 @@ const addToWatchlist = async (req, res) => {
     }
 };
 
+export const getWishlist = async (req, res) => {
+    try {
+        const { userId } = req.params;
 
-    const UserController = {
-        Signup,
-        Login,
-        addToWatchlist
-    };
+        // Find the user and populate the watchlist
+        const user = await User.findById(userId).populate('watchlist');
 
-    export default UserController;
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json({
+            message: "Wishlist fetched successfully",
+            watchlist: user.watchlist,
+        });
+    } catch (error) {
+        console.error("Error fetching wishlist:", error);
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+};
+
+const UserController = {
+    Signup,
+    Login,
+    addToWatchlist,
+    getWishlist
+
+};
+
+export default UserController;

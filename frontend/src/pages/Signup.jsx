@@ -114,7 +114,7 @@ export const Signup = () => {
         <div className="mt-4 text-center">
           <span className="text-sm text-gray-600">
             Already have an account?{" "}
-            <Link to="/signin" className="text-indigo-600 hover:underline">
+            <Link to="/" className="text-indigo-600 hover:underline">
               Login
             </Link>
           </span>
